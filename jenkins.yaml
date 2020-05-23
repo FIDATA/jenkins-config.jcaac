@@ -4,41 +4,41 @@ jenkins:
       adminUserNames: "fidata-chef"
       organizationNames: $GITHUB_ORG_NAME
   clouds:
-  - amazonEC2:
-      cloudName: "Amazon EC2"
-      credentialsId: "AWS"
-      # TODO: privateKey:
-      region: "eu-west-1" # TODO
-      templates:
-      # TODO
-      - ami: "ami-bc5cf3c5"
-        amiType:
-          unixData:
-            sshPort: "22"
-        associatePublicIp: false
-        connectBySSHProcess: false
-        connectionStrategy: PRIVATE_IP
-        deleteRootOnTermination: true
-        description: "UbuntuServer16.04.3+amd64"
-        ebsOptimized: false
-        idleTerminationMinutes: "30"
-        instanceCapStr: "2"
-        labelString: "ubuntu amd64"
-        maxTotalUses: -1
-        mode: NORMAL
-        monitoring: false
-        numExecutors: 2
-        remoteAdmin: "ubuntu"
-        remoteFS: "/srv/jenkins"
-        securityGroups: "$default_SG_ID,$ICMP_private_SG_ID,$SSH_private_SG_ID"
-        stopOnTerminate: false
-        subnetId: $AWS_SUBNET_ID
-        t2Unlimited: false
-        type: T2Medium
-        useDedicatedTenancy: false
-        useEphemeralDevices: false
-        zone: "eu-west-1c" # TODO
-      useInstanceProfileForCredentials: false
+  # - amazonEC2:
+  #     cloudName: "Amazon EC2"
+  #     credentialsId: "AWS"
+  #     # TODO: privateKey:
+  #     region: "eu-west-1" # TODO
+  #     templates:
+  #     # TODO
+  #     - ami: "ami-bc5cf3c5"
+  #       amiType:
+  #         unixData:
+  #           sshPort: "22"
+  #       associatePublicIp: false
+  #       connectBySSHProcess: false
+  #       connectionStrategy: PRIVATE_IP
+  #       deleteRootOnTermination: true
+  #       description: "UbuntuServer16.04.3+amd64"
+  #       ebsOptimized: false
+  #       idleTerminationMinutes: "30"
+  #       instanceCapStr: "2"
+  #       labelString: "ubuntu amd64"
+  #       maxTotalUses: -1
+  #       mode: NORMAL
+  #       monitoring: false
+  #       numExecutors: 2
+  #       remoteAdmin: "ubuntu"
+  #       remoteFS: "/srv/jenkins"
+  #       securityGroups: "$default_SG_ID,$ICMP_private_SG_ID,$SSH_private_SG_ID"
+  #       stopOnTerminate: false
+  #       subnetId: $AWS_SUBNET_ID
+  #       t2Unlimited: false
+  #       type: T2Medium
+  #       useDedicatedTenancy: false
+  #       useEphemeralDevices: false
+  #       zone: "eu-west-1c" # TODO
+  #     useInstanceProfileForCredentials: false
   - jClouds:
       cloudCredentialsId: "AWS 2"
       cloudGlobalKeyId: "SSH"
