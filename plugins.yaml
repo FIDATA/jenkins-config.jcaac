@@ -1,0 +1,65 @@
+﻿plugins:
+  # System & Maintenance
+  - artifactId: mailer
+  - artifactId: github-oauth
+  - artifactId: ec2
+  - artifactId: jclouds-jenkins
+  - artifactId: windows-slaves
+  - artifactId: configuration-as-code
+  - artifactId: configuration-as-code-groovy
+  - artifactId: support-core
+  - artifactId: lenientshutdown
+
+  # UX
+  - artifactId: ansicolor
+  - artifactId: dashboard-view
+  - artifactId: pegdown-formatter
+  - artifactId: greenballs
+  - artifactId: html-audio-notifier
+  - artifactId: chucknorris
+
+  # Primary functions - jobs as code
+  # - artifactId: job-dsl # TODO: remove ?
+  - artifactId: managed-scripts
+  - artifactId: build-name-setter
+  - artifactId: file-operations
+  - artifactId: lockable-resources
+  - artifactId: mask-passwords
+  - artifactId: pipeline-utility-steps
+  - artifactId: xshell
+  # Primary functions - workflows
+  - artifactId: workflow-aggregator
+  - artifactId: delivery-pipeline-plugin
+  - artifactId: promoted-builds
+  - artifactId: blueocean
+  # - artifactId: basic-branch-build-strategies
+  # Primary functions - VCSs and ITSs
+  - artifactId: github
+  - artifactId: github-branch-source
+  - artifactId: github-pr-comment-build
+  - artifactId: violation-comments-to-github
+  - artifactId: pipeline-github
+  - artifactId: embeddable-build-status
+  - artifactId: mantis
+  # Primary functions - triggers
+  - artifactId: maven-dependency-update-trigger
+  # Primary functions - build tools
+  - artifactId: gradle
+  - artifactId: terraform
+  - artifactId: custom-tools-plugin
+  # Primary functions - SDKs
+  - artifactId: openJDK-native-plugin
+  # Primary functions - documentation
+  - artifactId: javadoc
+  # Primary functions - code quality
+  - artifactId: warnings-ng
+  - artifactId: allure-jenkins-plugin
+  - artifactId: junit
+  - artifactId: htmlpublisher
+  # Primary functions - releases
+  - artifactId: artifactory
+  - artifactId: chef-identity
+  - artifactId: release # TOTEST
+  # Primary functions - auxiliary
+  - artifactId: global-build-stats
+  - artifactId: build-timeout # isn’t applicable to pipeline

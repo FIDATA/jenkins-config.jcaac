@@ -1,0 +1,174 @@
+jenkins:
+  authorizationStrategy:
+    github:
+      adminUserNames: "fidata-chef"
+      organizationNames: $GITHUB_ORG_NAME
+  clouds:
+  - amazonEC2:
+      cloudName: "Amazon EC2"
+      credentialsId: "AWS"
+      # TODO: privateKey:
+      region: "eu-west-1" # TODO
+      templates:
+      # TODO
+      - ami: "ami-bc5cf3c5"
+        amiType:
+          unixData:
+            sshPort: "22"
+        associatePublicIp: false
+        connectBySSHProcess: false
+        connectionStrategy: PRIVATE_IP
+        deleteRootOnTermination: true
+        description: "UbuntuServer16.04.3+amd64"
+        ebsOptimized: false
+        idleTerminationMinutes: "30"
+        instanceCapStr: "2"
+        labelString: "ubuntu amd64"
+        maxTotalUses: -1
+        mode: NORMAL
+        monitoring: false
+        numExecutors: 2
+        remoteAdmin: "ubuntu"
+        remoteFS: "/srv/jenkins"
+        securityGroups: "$default_SG_ID,$ICMP_private_SG_ID,$SSH_private_SG_ID"
+        stopOnTerminate: false
+        subnetId: $AWS_SUBNET_ID
+        t2Unlimited: false
+        type: T2Medium
+        useDedicatedTenancy: false
+        useEphemeralDevices: false
+        zone: "eu-west-1c" # TODO
+      useInstanceProfileForCredentials: false
+  - jClouds:
+      cloudCredentialsId: "AWS 2"
+      cloudGlobalKeyId: "SSH"
+      instanceCap: 2
+      profile: "JClouds"
+      providerName: "aws-ec2"
+      retentionTime: 30
+      scriptTimeout: 600000
+      startTimeout: 600000
+      # TODO: templates: |-
+      #  FAILED TO EXPORT
+      #  jenkins.plugins.jclouds.compute.JCloudsCloud#templates: java.lang.IllegalArgumentException: java.lang.String is not an enum type
+      #    at java.lang.Class.enumConstantDirectory(Class.java:3344)
+      #    at java.lang.Enum.valueOf(Enum.java:232)
+      #    at hudson.util.EnumConverter.convert(EnumConverter.java:34)
+      #    at org.apache.commons.beanutils.ConvertUtilsBean.convert(ConvertUtilsBean.java:544)
+      #    at io.jenkins.plugins.casc.impl.configurators.DataBoundConfigurator.describe(DataBoundConfigurator.java:285)
+      #    at io.jenkins.plugins.casc.Attribute._describe(Attribute.java:320)
+      #    at io.jenkins.plugins.casc.Attribute.describe(Attribute.java:249)
+      #    at io.jenkins.plugins.casc.impl.configurators.DataBoundConfigurator.describe(DataBoundConfigurator.java:310)
+      #    at io.jenkins.plugins.casc.impl.configurators.HeteroDescribableConfigurator.lambda$convertToNode$de0cd4f8$1(HeteroDescribableConfigurator.java:283)
+      #    at io.vavr.CheckedFunction0.lambda$unchecked$52349c75$1(CheckedFunction0.java:247)
+      #    at io.jenkins.plugins.casc.impl.configurators.HeteroDescribableConfigurator.convertToNode(HeteroDescribableConfigurator.java:283)
+      #    at io.jenkins.plugins.casc.impl.configurators.HeteroDescribableConfigurator.lambda$describe$5(HeteroDescribableConfigurator.java:107)
+      #    at io.vavr.control.Option.map(Option.java:392)
+      #    at io.jenkins.plugins.casc.impl.configurators.HeteroDescribableConfigurator.describe(HeteroDescribableConfigurator.java:107)
+      #    at io.jenkins.plugins.casc.impl.configurators.HeteroDescribableConfigurator.describe(HeteroDescribableConfigurator.java:55)
+      #    at io.jenkins.plugins.casc.Attribute._describe(Attribute.java:320)
+      #    at io.jenkins.plugins.casc.Attribute.describe(Attribute.java:249)
+      #    at io.jenkins.plugins.casc.Configurator.describe(Configurator.java:163)
+      trustAll: false
+  numExecutors: 0
+  securityRealm:
+    github:
+      clientID: $GITHUB_OAUTH_CLIENT_ID
+      clientSecret: $GITHUB_OAUTH_CLIENT_SECRET
+      githubApiUri: "https://api.github.com"
+      githubWebUri: "https://github.com"
+      oauthScopes: "read:org,user:email"
+security:
+  scriptApproval:
+    approvedSignatures:
+    - "method hudson.plugins.git.GitSCM getBranches"
+    - "method hudson.plugins.git.GitSCM getUserRemoteConfigs"
+    - "method hudson.plugins.git.GitSCM isDoGenerateSubmoduleConfigurations"
+    - "method java.nio.file.Path toAbsolutePath"
+    - "method java.util.regex.Matcher find"
+    - "staticField java.lang.Boolean FALSE"
+    - "staticField java.lang.Boolean TRUE"
+    - "staticMethod org.codehaus.groovy.runtime.DefaultGroovyMethods find java.lang.Object"
+unclassified:
+  artifactoryBuilder:
+    # TODO: artifactoryServers: |-
+    #  FAILED TO EXPORT
+    #  org.jfrog.hudson.ArtifactoryBuilder$DescriptorImpl#artifactoryServers: io.jenkins.plugins.casc.ConfiguratorException: Can't read attribute 'serverId' from org.jfrog.hudson.ArtifactoryServer@62ce1d0e
+    #    at io.jenkins.plugins.casc.Attribute._getValue(Attribute.java:453)
+    #    at io.jenkins.plugins.casc.Attribute.getValue(Attribute.java:227)
+    #    at io.jenkins.plugins.casc.impl.configurators.DataBoundConfigurator.describe(DataBoundConfigurator.java:283)
+    #    at io.jenkins.plugins.casc.Attribute._describe(Attribute.java:320)
+    #    at io.jenkins.plugins.casc.Attribute.describe(Attribute.java:249)
+    #    at io.jenkins.plugins.casc.Configurator.describe(Configurator.java:163)
+    #    at io.jenkins.plugins.casc.impl.configurators.GlobalConfigurationCategoryConfigurator.describe(GlobalConfigurationCategoryConfigurator.java:106)
+    #    at io.jenkins.plugins.casc.impl.configurators.GlobalConfigurationCategoryConfigurator.lambda$describe$3(GlobalConfigurationCategoryConfigurator.java:99)
+    #    at java.util.stream.ForEachOps$ForEachOp$OfRef.accept(ForEachOps.java:184)
+    #    at java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:175)
+    #    at java.util.Iterator.forEachRemaining(Iterator.java:116)
+    #    at java.util.Spliterators$IteratorSpliterator.forEachRemaining(Spliterators.java:1801)
+    #    at java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:481)
+    #    at java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:471)
+    #    at java.util.stream.ForEachOps$ForEachOp.evaluateSequential(ForEachOps.java:151)
+    #    at java.util.stream.ForEachOps$ForEachOp$OfRef.evaluateSequential(ForEachOps.java:174)
+    #    at java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
+    #    at java.util.stream.ReferencePipeline.forEach(ReferencePipeline.java:418)
+    #    at io.jenkins.plugins.casc.impl.configurators.GlobalConfigurationCategoryConfigurator.describe(GlobalConfigurationCategoryConfigurator.java:99)
+    #    at io.jenkins.plugins.casc.impl.configurators.GlobalConfigurationCategoryConfigurator.describe(GlobalConfigurationCategoryConfigurator.java:30)
+    useCredentialsPlugin: true
+  gitHubPluginConfig:
+    configs:
+    - credentialsId: "Github"
+    hookUrl: "$URL/github-webhook/"
+  gitSCM:
+    createAccountBasedOnEmail: false
+    globalConfigEmail: $EMAIL
+    globalConfigName: $FULL_NAME
+  globalLibraries:
+    libraries:
+    - name: "jenkins-pipeline-shared-library"
+      retriever:
+        modernSCM:
+          scm:
+            github:
+              credentialsId: "Github 2"
+              id: "19e2f410-5f69-49e1-a037-68a5615d2815"
+              repoOwner: $GITHUB_ORG_NAME
+              repository: "jenkins-pipeline-shared-library"
+              traits:
+              - gitHubBranchDiscovery:
+                  strategyId: 1
+              - originPullRequestDiscoveryTrait:
+                  strategyId: 1
+              - gitHubForkDiscovery:
+                  strategyId: 1
+                  trust: "gitHubTrustPermissions"
+  location:
+    adminAddress: "$FULL_NAME <$EMAIL>"
+    url: "$URL"
+  mailer:
+    adminAddress: "$FULL_NAME <$EMAIL>"
+    charset: "UTF-8"
+    smtpHost: "smtp.yandex.ru"
+    smtpPort: "465"
+    useSsl: true
+    # TODO: Authentication
+  violationsToGitHubConfiguration:
+    credentialsId: "Github"
+    gitHubUrl: "https://api.github.com/"
+    repositoryOwner: $GITHUB_ORG_NAME
+credentials:
+  system:
+    domainCredentials:
+    - credentials:
+      - amazonWebServices:
+        scope: GLOBAL
+        id: AWS
+        username: $AWS_ACCESS_KEY_ID
+        privateKey: $AWS_SECRET_ACCESS_KEY
+        description: "$FULL_NAME AWS"
+      - jCloudsUserWithKey:
+        scope: GLOBAL
+        id: AWS 2
+        username: $AWS_ACCESS_KEY_ID
+        privateKey: $AWS_SECRET_ACCESS_KEY
+        description: "$FULL_NAME AWS"
