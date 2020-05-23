@@ -1,4 +1,4 @@
-﻿plugins:
+plugins:
   # System & Maintenance
   - artifactId: mailer
   - artifactId: github-oauth
