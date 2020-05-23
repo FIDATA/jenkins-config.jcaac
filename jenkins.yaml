@@ -163,6 +163,6 @@ credentials:
       - aws:
           scope: GLOBAL
           id: AWS
-          username: $AWS_ACCESS_KEY_ID
-          privateKey: $AWS_SECRET_ACCESS_KEY
+          accessKey: $AWS_ACCESS_KEY_ID
+          secretKey: $AWS_SECRET_ACCESS_KEY
           description: "$FULL_NAME AWS"
