@@ -137,7 +137,7 @@ unclassified:
               traits:
               - gitHubBranchDiscovery:
                   strategyId: 1
-              - originPullRequestDiscoveryTrait:
+              - gitHubPullRequestDiscovery:
                   strategyId: 1
               - gitHubForkDiscovery:
                   strategyId: 1
@@ -146,7 +146,6 @@ unclassified:
     adminAddress: "$FULL_NAME <$EMAIL>"
     url: "$URL"
   mailer:
-    adminAddress: "$FULL_NAME <$EMAIL>"
     charset: "UTF-8"
     smtpHost: "smtp.yandex.ru"
     smtpPort: "465"
