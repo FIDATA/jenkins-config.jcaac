@@ -2,7 +2,7 @@ jenkins:
   authorizationStrategy:
     github:
       adminUserNames: "fidata-chef"
-      organizationNames: $GITHUB_ORG_NAME
+      organizationNames: ${GITHUB_ORG_NAME}
   clouds:
   # - amazonEC2:
   #     cloudName: "Amazon EC2"
@@ -30,9 +30,9 @@ jenkins:
   #       numExecutors: 2
   #       remoteAdmin: "ubuntu"
   #       remoteFS: "/srv/jenkins"
-  #       securityGroups: "$default_SG_ID,$ICMP_private_SG_ID,$SSH_private_SG_ID"
+  #       securityGroups: "${default_SG_ID},${ICMP_private_SG_ID},${SSH_private_SG_ID}"
   #       stopOnTerminate: false
-  #       subnetId: $AWS_SUBNET_ID
+  #       subnetId: ${AWS_SUBNET_ID}
   #       t2Unlimited: false
   #       type: T2Medium
   #       useDedicatedTenancy: false
@@ -73,8 +73,8 @@ jenkins:
   numExecutors: 0
   securityRealm:
     github:
-      clientID: $GITHUB_OAUTH_CLIENT_ID
-      clientSecret: $GITHUB_OAUTH_CLIENT_SECRET
+      clientID: ${GITHUB_OAUTH_CLIENT_ID}
+      clientSecret: ${GITHUB_OAUTH_CLIENT_SECRET}
       githubApiUri: "https://api.github.com"
       githubWebUri: "https://github.com"
       oauthScopes: "read:org,user:email"
@@ -121,8 +121,8 @@ unclassified:
     hookUrl: "$URL/github-webhook/"
   gitSCM:
     createAccountBasedOnEmail: false
-    globalConfigEmail: $EMAIL
-    globalConfigName: $FULL_NAME
+    globalConfigEmail: ${EMAIL}
+    globalConfigName: ${FULL_NAME}
   globalLibraries:
     libraries:
     - name: "jenkins-pipeline-shared-library"
@@ -132,7 +132,7 @@ unclassified:
             github:
               credentialsId: "Github 2"
               id: "19e2f410-5f69-49e1-a037-68a5615d2815"
-              repoOwner: $GITHUB_ORG_NAME
+              repoOwner: ${GITHUB_ORG_NAME}
               repository: "jenkins-pipeline-shared-library"
               traits:
               - gitHubBranchDiscovery:
@@ -143,7 +143,7 @@ unclassified:
                   strategyId: 1
                   trust: "gitHubTrustPermissions"
   location:
-    adminAddress: "$FULL_NAME <$EMAIL>"
+    adminAddress: "${FULL_NAME} <${EMAIL}>"
     url: "$URL"
   mailer:
     charset: "UTF-8"
@@ -154,7 +154,7 @@ unclassified:
   violationsToGitHubConfiguration:
     credentialsId: "Github"
     gitHubUrl: "https://api.github.com/"
-    repositoryOwner: $GITHUB_ORG_NAME
+    repositoryOwner: ${GITHUB_ORG_NAME}
 credentials:
   system:
     domainCredentials:
@@ -162,6 +162,6 @@ credentials:
       - aws:
           scope: GLOBAL
           id: AWS
-          accessKey: $AWS_ACCESS_KEY_ID
-          secretKey: $AWS_SECRET_ACCESS_KEY
-          description: "$FULL_NAME AWS"
+          accessKey: ${AWS_ACCESS_KEY_ID}
+          secretKey: ${AWS_SECRET_ACCESS_KEY}
+          description: "${FULL_NAME} AWS"
