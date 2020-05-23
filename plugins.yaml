@@ -62,4 +62,4 @@ plugins:
   - artifactId: release # TOTEST
   # Primary functions - auxiliary
   - artifactId: global-build-stats
-  - artifactId: build-timeout # isn’t applicable to pipeline
+  - artifactId: build-timeout # isn't applicable to pipeline
