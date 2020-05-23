@@ -161,14 +161,14 @@ credentials:
     domainCredentials:
     - credentials:
       - amazonWebServices:
-        scope: GLOBAL
-        id: AWS
-        username: $AWS_ACCESS_KEY_ID
-        privateKey: $AWS_SECRET_ACCESS_KEY
-        description: "$FULL_NAME AWS"
+          scope: GLOBAL
+          id: AWS
+          username: $AWS_ACCESS_KEY_ID
+          privateKey: $AWS_SECRET_ACCESS_KEY
+          description: "$FULL_NAME AWS"
       - jCloudsUserWithKey:
-        scope: GLOBAL
-        id: AWS 2
-        username: $AWS_ACCESS_KEY_ID
-        privateKey: $AWS_SECRET_ACCESS_KEY
-        description: "$FULL_NAME AWS"
+          scope: GLOBAL
+          id: AWS 2
+          username: $AWS_ACCESS_KEY_ID
+          privateKey: $AWS_SECRET_ACCESS_KEY
+          description: "$FULL_NAME AWS"
