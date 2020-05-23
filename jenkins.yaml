@@ -118,7 +118,7 @@ unclassified:
   gitHubPluginConfig:
     configs:
     - credentialsId: "Github"
-    hookUrl: "$URL/github-webhook/"
+    hookUrl: "${URL}/github-webhook/"
   gitSCM:
     createAccountBasedOnEmail: false
     globalConfigEmail: ${EMAIL}
@@ -144,7 +144,7 @@ unclassified:
                   trust: "gitHubTrustPermissions"
   location:
     adminAddress: "${FULL_NAME} <${EMAIL}>"
-    url: "$URL"
+    url: ${URL}
   mailer:
     charset: "UTF-8"
     smtpHost: "smtp.yandex.ru"
